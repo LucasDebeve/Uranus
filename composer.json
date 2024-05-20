@@ -118,7 +118,9 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.57",
-        "symfony/maker-bundle": "^1.59"
+        "symfony/maker-bundle": "^1.59",
+        "zenstruck/foundry": "^1.37"
     }
 }
