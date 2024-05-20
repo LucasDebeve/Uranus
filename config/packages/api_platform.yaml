@@ -1,6 +1,6 @@
 api_platform:
-    title: Hello API Platform
-    version: 1.0.0
+    title: Uranus API
+    version: 0.0.1
     formats:
         jsonld: ['application/ld+json']
     docs_formats:
@@ -8,7 +8,7 @@ api_platform:
         jsonopenapi: ['application/vnd.openapi+json']
         html: ['text/html']
     defaults:
-        stateless: true
+        stateless: false
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
         extra_properties:
@@ -16,3 +16,8 @@ api_platform:
             rfc_7807_compliant_errors: true
     keep_legacy_inflector: false
     use_symfony_listeners: true
+    swagger:
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header

@@ -1,0 +1,116 @@
+[
+  {
+    "titre": "Introduction à l'informatique",
+    "description": "Découverte des bases de l'informatique et de son histoire.",
+    "dateDeb": "2023-09-01T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Algorithmique et programmation",
+    "description": "Apprentissage des concepts d'algorithmique et de programmation en Python.",
+    "dateDeb": "2023-09-16T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Bases de données",
+    "description": "Découverte des systèmes de gestion de bases de données et apprentissage du langage SQL.",
+    "dateDeb": "2023-10-08T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Réseaux informatiques",
+    "description": "Étude des principes fondamentaux des réseaux informatiques et de leur fonctionnement.",
+    "dateDeb": "2023-10-30T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Sécurité informatique",
+    "description": "Apprentissage des enjeux et des techniques de la sécurité informatique.",
+    "dateDeb": "2023-11-27T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Développement web",
+    "description": "Découverte des technologies de développement web (HTML, CSS, JavaScript, etc.) et réalisation d'un site web.",
+    "dateDeb": "2024-01-02T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Systèmes d'exploitation",
+    "description": "Étude des principes fondamentaux des systèmes d'exploitation et de leur fonctionnement.",
+    "dateDeb": "2024-02-18T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Architecture des ordinateurs",
+    "description": "Découverte de l'architecture des ordinateurs et de leur fonctionnement interne.",
+    "dateDeb": "2024-03-26T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Gestion de projet informatique",
+    "description": "Apprentissage des méthodes et des outils de gestion de projet informatique.",
+    "dateDeb": "2024-04-23T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Intelligence artificielle",
+    "description": "Découverte des concepts et des techniques d'intelligence artificielle.",
+    "dateDeb": "2024-05-18T08:00:00",
+    "dateFin": "2024-05-20T17:00:00"
+  },
+  {
+    "titre": "Développement mobile",
+    "description": "Apprentissage des technologies de développement mobile (Android, iOS, etc.) et réalisation d'une application.",
+    "dateDeb": "2024-07-02T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Big Data",
+    "description": "Découverte des enjeux et des techniques du traitement de données massives.",
+    "dateDeb": "2024-04-27T08:00:00",
+    "dateFin": "2024-05-14T17:00:00"
+  },
+  {
+    "titre": "Cloud Computing",
+    "description": "Étude des principes fondamentaux du cloud computing et de son fonctionnement.",
+    "dateDeb": "2023-10-15T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Réalité virtuelle et augmentée",
+    "description": "Découverte des concepts et des techniques de réalité virtuelle et augmentée.",
+    "dateDeb": "2023-12-01T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Internet des objets",
+    "description": "Étude des principes fondamentaux de l'internet des objets et de son fonctionnement.",
+    "dateDeb": "2024-01-21T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Éthique et informatique",
+    "description": "Réflexion sur les enjeux éthiques liés à l'informatique et à ses usages.",
+    "dateDeb": "2024-02-25T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Cybersécurité",
+    "description": "Approfondissement des enjeux et des techniques de la sécurité informatique.",
+    "dateDeb": "2024-03-23T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  },
+  {
+    "titre": "Développement d'applications distribuées",
+    "description": "Apprentissage des concepts et des techniques de développement d'applications distribuées.",
+    "dateDeb": "2024-05-05T08:00:00",
+    "dateFin": "2024-08-31T18:00:00"
+  },
+  {
+    "titre": "Bilan et perspectives",
+    "description": "Retour sur les compétences acquises et réflexion sur les évolutions du secteur informatique.",
+    "dateDeb": "2024-06-30T08:00:00",
+    "dateFin": "2024-08-31T17:00:00"
+  }
+]

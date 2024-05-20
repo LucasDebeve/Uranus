@@ -47,7 +47,7 @@ final class PlanDeTravailFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'titre' => self::faker()->text(255),
+            'titre' => self::faker()->sentence(),
         ];
     }
 
