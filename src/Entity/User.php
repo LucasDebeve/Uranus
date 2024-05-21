@@ -93,9 +93,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['User_PlanDeTravail_read'])]
     private Collection $plansDeTravail;
 
+    /**
+     * @var Collection<int, Suivi>
+     */
+    #[ORM\OneToMany(targetEntity: Suivi::class, mappedBy: 'eleve', orphanRemoval: true)]
+    private Collection $suivis;
+
     public function __construct()
     {
         $this->plansDeTravail = new ArrayCollection();
+        $this->suivis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +252,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($plansDeTravail->getAuteur() === $this) {
                 $plansDeTravail->setAuteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Suivi>
+     */
+    public function getSuivis(): Collection
+    {
+        return $this->suivis;
+    }
+
+    public function addSuivi(Suivi $suivi): static
+    {
+        if (!$this->suivis->contains($suivi)) {
+            $this->suivis->add($suivi);
+            $suivi->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuivi(Suivi $suivi): static
+    {
+        if ($this->suivis->removeElement($suivi)) {
+            // set the owning side to null (unless already changed)
+            if ($suivi->getEleve() === $this) {
+                $suivi->setEleve(null);
             }
         }
 

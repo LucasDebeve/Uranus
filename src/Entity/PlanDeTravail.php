@@ -145,9 +145,16 @@ class PlanDeTravail
     #[Groups(['PlanDeTravail_read', 'User:PlanDeTravail_read'])]
     private ?User $auteur = null;
 
+    /**
+     * @var Collection<int, Suivi>
+     */
+    #[ORM\OneToMany(targetEntity: Suivi::class, mappedBy: 'plan_de_travail', orphanRemoval: true)]
+    private Collection $suivis;
+
     public function __construct()
     {
         $this->sequences = new ArrayCollection();
+        $this->suivis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -205,6 +212,36 @@ class PlanDeTravail
     public function setAuteur(?User $auteur): static
     {
         $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Suivi>
+     */
+    public function getSuivis(): Collection
+    {
+        return $this->suivis;
+    }
+
+    public function addSuivi(Suivi $suivi): static
+    {
+        if (!$this->suivis->contains($suivi)) {
+            $this->suivis->add($suivi);
+            $suivi->setPlanDeTravail($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuivi(Suivi $suivi): static
+    {
+        if ($this->suivis->removeElement($suivi)) {
+            // set the owning side to null (unless already changed)
+            if ($suivi->getPlanDeTravail() === $this) {
+                $suivi->setPlanDeTravail(null);
+            }
+        }
 
         return $this;
     }
