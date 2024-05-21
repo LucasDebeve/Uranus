@@ -47,8 +47,8 @@ final class SuiviFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'eleve' => UserFactory::randomOrCreate(),
-            'plan_de_travail' => PlanDeTravailFactory::randomOrCreate(),
+            'eleve' => UserFactory::random() ?? UserFactory::new(),
+            'plan_de_travail' => PlanDeTravailFactory::random() ?? PlanDeTravailFactory::new(),
             'progression' => self::faker()->numberBetween(0, 70),
         ];
     }
