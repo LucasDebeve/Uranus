@@ -48,6 +48,7 @@ final class PlanDeTravailFactory extends ModelFactory
     {
         return [
             'titre' => self::faker()->sentence(),
+            'auteur' => UserFactory::random() ?? UserFactory::new(),
         ];
     }
 

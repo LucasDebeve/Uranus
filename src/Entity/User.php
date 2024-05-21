@@ -3,11 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\UserRepository;
 use App\State\MeProvider;
 use App\State\UserPasswordHasher;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -30,6 +36,17 @@ use Symfony\Component\Validator\Constraints as Assert;
     denormalizationContext: ['groups' => ['User_write']],
     security: 'is_granted("ROLE_USER") && object == user',
     processor: UserPasswordHasher::class)]
+#[Post(
+    normalizationContext: ['groups' => ['User_read', 'User_me']],
+    denormalizationContext: ['groups' => ['User_write']],
+    security: 'is_granted("ROLE_PROF")',
+    processor: UserPasswordHasher::class
+)]
+#[Delete(
+    uriTemplate: '/users/{id}',
+    requirements: ['id' => '\d+'],
+    security: 'is_granted("ROLE_PROF")'
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -68,6 +85,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
     private $avatar;
+
+    /**
+     * @var Collection<int, PlanDeTravail>
+     */
+    #[ORM\OneToMany(targetEntity: PlanDeTravail::class, mappedBy: 'auteur')]
+    #[Groups(['User_PlanDeTravail_read'])]
+    private Collection $plansDeTravail;
+
+    public function __construct()
+    {
+        $this->plansDeTravail = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +217,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar($avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlanDeTravail>
+     */
+    public function getPlansDeTravail(): Collection
+    {
+        return $this->plansDeTravail;
+    }
+
+    public function addPlansDeTravail(PlanDeTravail $plansDeTravail): static
+    {
+        if (!$this->plansDeTravail->contains($plansDeTravail)) {
+            $this->plansDeTravail->add($plansDeTravail);
+            $plansDeTravail->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlansDeTravail(PlanDeTravail $plansDeTravail): static
+    {
+        if ($this->plansDeTravail->removeElement($plansDeTravail)) {
+            // set the owning side to null (unless already changed)
+            if ($plansDeTravail->getAuteur() === $this) {
+                $plansDeTravail->setAuteur(null);
+            }
+        }
 
         return $this;
     }
