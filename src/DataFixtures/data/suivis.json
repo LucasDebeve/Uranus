@@ -1,0 +1,82 @@
+[
+  {
+    "eleve": 1,
+    "plan_de_travail": 1
+  },
+  {
+    "eleve": 1,
+    "plan_de_travail": 3
+  },
+  {
+    "eleve": 2,
+    "plan_de_travail": 1
+  },
+  {
+    "eleve": 2,
+    "plan_de_travail": 9
+  },
+  {
+    "eleve": 3,
+    "plan_de_travail": 2
+  },
+  {
+    "eleve": 3,
+    "plan_de_travail": 3
+  },
+  {
+    "eleve": 4,
+    "plan_de_travail": 2
+  },
+  {
+    "eleve": 4,
+    "plan_de_travail": 3
+  },
+  {
+    "eleve": 5,
+    "plan_de_travail": 5
+  },
+  {
+    "eleve": 5,
+    "plan_de_travail": 4
+  },
+  {
+    "eleve": 6,
+    "plan_de_travail": 4
+  },
+  {
+    "eleve": 6,
+    "plan_de_travail": 8
+  },
+    {
+        "eleve": 7,
+        "plan_de_travail": 5
+    },
+    {
+        "eleve": 7,
+        "plan_de_travail": 6
+    },
+    {
+        "eleve": 8,
+        "plan_de_travail": 9
+    },
+    {
+        "eleve": 8,
+        "plan_de_travail": 2
+    },
+    {
+        "eleve": 9,
+        "plan_de_travail": 1
+    },
+    {
+        "eleve": 9,
+        "plan_de_travail": 4
+    },
+    {
+        "eleve": 10,
+        "plan_de_travail": 6
+    },
+    {
+        "eleve": 10,
+        "plan_de_travail": 7
+    }
+]

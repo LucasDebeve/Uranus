@@ -48,7 +48,7 @@ final class SuiviFactory extends ModelFactory
     {
         return [
             'eleve' => UserFactory::random() ?? UserFactory::new(),
-            'plan_de_travail' => PlanDeTravailFactory::random() ?? PlanDeTravailFactory::new(),
+            'plan_de_travail' => PlanDeTravailFactory::new(),
             'progression' => self::faker()->numberBetween(0, 70),
         ];
     }

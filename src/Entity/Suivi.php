@@ -29,9 +29,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['User:Suivi_read']],
 )]
-#[Get(
-
-)]
+#[ORM\UniqueConstraint(columns: ['eleve_id', 'plan_de_travail_id'])]
 class Suivi
 {
     #[ORM\Id]
