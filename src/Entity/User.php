@@ -105,11 +105,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Groupe::class, mappedBy: 'responsable')]
     private Collection $mes_groupes;
 
+    /**
+     * @var Collection<int, AssignationGroupe>
+     */
+    #[ORM\OneToMany(targetEntity: AssignationGroupe::class, mappedBy: 'eleve', orphanRemoval: true)]
+    private Collection $assignations;
+
     public function __construct()
     {
         $this->plansDeTravail = new ArrayCollection();
         $this->suivis = new ArrayCollection();
         $this->mes_groupes = new ArrayCollection();
+        $this->assignations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -319,6 +326,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($mesGroupe->getResponsable() === $this) {
                 $mesGroupe->setResponsable(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AssignationGroupe>
+     */
+    public function getAssignations(): Collection
+    {
+        return $this->assignations;
+    }
+
+    public function addAssignation(AssignationGroupe $assignation): static
+    {
+        if (!$this->assignations->contains($assignation)) {
+            $this->assignations->add($assignation);
+            $assignation->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignation(AssignationGroupe $assignation): static
+    {
+        if ($this->assignations->removeElement($assignation)) {
+            // set the owning side to null (unless already changed)
+            if ($assignation->getEleve() === $this) {
+                $assignation->setEleve(null);
             }
         }
 

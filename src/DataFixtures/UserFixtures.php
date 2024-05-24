@@ -20,6 +20,8 @@ class UserFixtures extends Fixture
             'username' => 'user',
         ]);
 
+        UserFactory::createMany(3);
+
         $manager->flush();
     }
 }
