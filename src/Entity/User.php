@@ -99,10 +99,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Suivi::class, mappedBy: 'eleve', orphanRemoval: true)]
     private Collection $suivis;
 
+    /**
+     * @var Collection<int, Groupe>
+     */
+    #[ORM\OneToMany(targetEntity: Groupe::class, mappedBy: 'responsable')]
+    private Collection $mes_groupes;
+
     public function __construct()
     {
         $this->plansDeTravail = new ArrayCollection();
         $this->suivis = new ArrayCollection();
+        $this->mes_groupes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -282,6 +289,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($suivi->getEleve() === $this) {
                 $suivi->setEleve(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Groupe>
+     */
+    public function getMesGroupes(): Collection
+    {
+        return $this->mes_groupes;
+    }
+
+    public function addMesGroupe(Groupe $mesGroupe): static
+    {
+        if (!$this->mes_groupes->contains($mesGroupe)) {
+            $this->mes_groupes->add($mesGroupe);
+            $mesGroupe->setResponsable($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesGroupe(Groupe $mesGroupe): static
+    {
+        if ($this->mes_groupes->removeElement($mesGroupe)) {
+            // set the owning side to null (unless already changed)
+            if ($mesGroupe->getResponsable() === $this) {
+                $mesGroupe->setResponsable(null);
             }
         }
 
