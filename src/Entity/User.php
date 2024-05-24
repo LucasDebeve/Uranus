@@ -28,7 +28,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Get]
 #[Get(
     uriTemplate: '/me',
-    normalizationContext: ['groups' => ['User_read', 'User_me']],
+    normalizationContext: ['groups' => ['User_read', 'User_me', 'User:assignations_read']],
     security: 'is_granted("ROLE_USER")',
     provider: MeProvider::class)]
 #[Patch(
@@ -103,6 +103,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Groupe>
      */
     #[ORM\OneToMany(targetEntity: Groupe::class, mappedBy: 'responsable')]
+    #[Groups(['User:assignations_read'])]
     private Collection $mes_groupes;
 
     /**
