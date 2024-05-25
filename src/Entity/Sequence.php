@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\SequenceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,17 @@ class Sequence
     #[ORM\ManyToOne(inversedBy: 'sequences')]
     #[ORM\JoinColumn(nullable: false)]
     private ?PlanDeTravail $plan_de_travail = null;
+
+    /**
+     * @var Collection<int, Projet>
+     */
+    #[ORM\OneToMany(targetEntity: Projet::class, mappedBy: 'sequence')]
+    private Collection $projets;
+
+    public function __construct()
+    {
+        $this->projets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -93,6 +106,36 @@ class Sequence
     public function setPlanDeTravail(?PlanDeTravail $plan_de_travail): static
     {
         $this->plan_de_travail = $plan_de_travail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Projet>
+     */
+    public function getProjets(): Collection
+    {
+        return $this->projets;
+    }
+
+    public function addProjet(Projet $projet): static
+    {
+        if (!$this->projets->contains($projet)) {
+            $this->projets->add($projet);
+            $projet->setSequence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjet(Projet $projet): static
+    {
+        if ($this->projets->removeElement($projet)) {
+            // set the owning side to null (unless already changed)
+            if ($projet->getSequence() === $this) {
+                $projet->setSequence(null);
+            }
+        }
 
         return $this;
     }
