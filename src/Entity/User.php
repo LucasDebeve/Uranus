@@ -112,12 +112,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: AssignationGroupe::class, mappedBy: 'eleve', orphanRemoval: true)]
     private Collection $assignations;
 
+    /**
+     * @var Collection<int, Projet>
+     */
+    #[ORM\OneToMany(targetEntity: Projet::class, mappedBy: 'auteur')]
+    private Collection $projets;
+
     public function __construct()
     {
         $this->plansDeTravail = new ArrayCollection();
         $this->suivis = new ArrayCollection();
         $this->mes_groupes = new ArrayCollection();
         $this->assignations = new ArrayCollection();
+        $this->projets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -357,6 +364,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($assignation->getEleve() === $this) {
                 $assignation->setEleve(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Projet>
+     */
+    public function getProjets(): Collection
+    {
+        return $this->projets;
+    }
+
+    public function addProjet(Projet $projet): static
+    {
+        if (!$this->projets->contains($projet)) {
+            $this->projets->add($projet);
+            $projet->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjet(Projet $projet): static
+    {
+        if ($this->projets->removeElement($projet)) {
+            // set the owning side to null (unless already changed)
+            if ($projet->getAuteur() === $this) {
+                $projet->setAuteur(null);
             }
         }
 

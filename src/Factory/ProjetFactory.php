@@ -50,6 +50,7 @@ final class ProjetFactory extends ModelFactory
             'titre' => self::faker()->sentence(),
             'description' => self::faker()->text(),
             'sequence' => SequenceFactory::random() ?? SequenceFactory::new(),
+            'auteur' => UserFactory::random() ?? UserFactory::new(),
         ];
     }
 
