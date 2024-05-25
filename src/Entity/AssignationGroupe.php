@@ -16,7 +16,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
     uriVariables: [
         'id' => new Link(fromProperty: 'assignations', fromClass: Groupe::class),
     ],
-    normalizationContext: ['groups' => ['assignations_read']],
+    normalizationContext: ['groups' => ['User:assignations_read']],
+)]
+#[GetCollection(
+    uriTemplate: '/users/{id}/assignations',
+    uriVariables: [
+        'id' => new Link(fromProperty: 'assignations', fromClass: User::class),
+    ],
+    normalizationContext: ['groups' => ['Groupe:assignations_read']],
 )]
 class AssignationGroupe
 {
@@ -28,12 +35,12 @@ class AssignationGroupe
 
     #[ORM\ManyToOne(inversedBy: 'assignations')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['assignations_read'])]
+    #[Groups(['assignations_read', 'Groupe:assignations_read'])]
     private ?Groupe $groupe = null;
 
     #[ORM\ManyToOne(inversedBy: 'assignations')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['assignations_read'])]
+    #[Groups(['assignations_read', 'User:assignations_read'])]
     private ?User $eleve = null;
 
     public function getId(): ?int

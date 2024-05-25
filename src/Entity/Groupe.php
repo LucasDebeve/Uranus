@@ -8,6 +8,7 @@ use App\Repository\GroupeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GroupeRepository::class)]
 #[ApiResource]
@@ -19,6 +20,7 @@ class Groupe
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['Groupe:assignations_read'])]
     private ?string $titre = null;
 
     #[ORM\ManyToOne(inversedBy: 'mes_groupes')]
