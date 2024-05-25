@@ -47,7 +47,7 @@ final class AssignationGroupeFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'eleve' => UserFactory::random() ?? UserFactory::new(),
+            'eleve' => UserFactory::new(),
             'groupe' => GroupeFactory::random() ?? GroupeFactory::new(),
         ];
     }

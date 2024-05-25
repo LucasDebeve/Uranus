@@ -52,11 +52,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['User_read'])]
+    #[Groups(['User_read', 'groupe_read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups(['User_read'])]
+    #[Groups(['User_read', 'groupe_read'])]
     private ?string $username = null;
 
     /**
@@ -76,11 +76,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $plainPassword = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Groups(['User_read', 'User_write'])]
+    #[Groups(['User_read', 'User_write', 'groupe_read'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Groups(['User_read', 'User_write'])]
+    #[Groups(['User_read', 'User_write', 'groupe_read'])]
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::BLOB, nullable: true)]
